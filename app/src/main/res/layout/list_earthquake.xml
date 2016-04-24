@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp" >
+
+    <TextView
+        android:id="@+id/earthquakeId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EarthqaukeId"
+        android:textSize="30px" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/magnitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Magnitude"
+        android:textSize="30px" >
+    </TextView>
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@+id/label"
+        android:textSize="30px" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/coordinates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@+id/label"
+        android:textSize="30px" >
+    </TextView>
+</LinearLayout>
