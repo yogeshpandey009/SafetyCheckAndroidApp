@@ -76,22 +76,23 @@ public class MapActivity extends AppCompatActivity {
             // Once map is loaded
             // Supported types include: MAP_TYPE_NORMAL, MAP_TYPE_SATELLITE
             // MAP_TYPE_TERRAIN, MAP_TYPE_HYBRID
-            performAction();
             map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
             //map.setMyLocationEnabled(true);
             UiSettings mapUiSettings = map.getUiSettings();
             mapUiSettings.setZoomControlsEnabled(true);
-            mapUiSettings.setMyLocationButtonEnabled(true);
             mapUiSettings.setZoomGesturesEnabled(true);
+            mapUiSettings.setMyLocationButtonEnabled(true);
             mapUiSettings.setScrollGesturesEnabled(true);
             Toast.makeText(this, "Map Fragment was loaded properly!", Toast.LENGTH_SHORT).show();
             // Attach marker click listener to the map here
             map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                 public boolean onMarkerClick(Marker marker) {
                     // Handle marker click here
-                    return true;
+                    marker.showInfoWindow();
+                    return false;
                 }
             });
+            performAction();
         } else {
             Toast.makeText(this, "Error - Map was null!!", Toast.LENGTH_SHORT).show();
         }
@@ -186,28 +187,54 @@ public class MapActivity extends AppCompatActivity {
                 .radius(rad)
                 .strokeColor(Color.rgb(100, 50, 0))
                 .strokeWidth(5)
-                .fillColor(Color.argb(20, 255, 0, 50))
-                .zIndex(55);
+                .fillColor(Color.argb(70, 255, 0, 50))
+                .zIndex(30);
         // In meters
         // Get back the mutable Circle
         Circle circle = map.addCircle(circleOptions);
     }
 
-    private void dropMarker(float lat, float lon, float color) {
+    private void dropMarker(float lat, float lon, float color, String title, String snippet) {
         LatLng cen = new LatLng(lat, lon);
-        Marker radiusMarker = map.addMarker(new MarkerOptions()
-                .position(cen)
+        Marker marker = map.addMarker(new MarkerOptions()
+                .position(cen).title(title).snippet(snippet)
                 .icon(BitmapDescriptorFactory.defaultMarker(
                         color)));
-
+        //dropPinEffect(marker);
     }
+
+    /*
+    private boolean isGooglePlayServicesAvailable() {
+        // Check that Google Play services is available
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getActivity());
+        // If Google Play services is available
+        if (ConnectionResult.SUCCESS == resultCode) {
+            // In debug mode, log the status
+            Log.d("Location Updates", "Google Play services is available.");
+            return true;
+        } else {
+            // Get the error dialog from Google Play services
+            Dialog errorDialog = GooglePlayServicesUtil.getErrorDialog(resultCode, this,
+                    CONNECTION_FAILURE_RESOLUTION_REQUEST);
+
+            // If Google Play services can provide an error dialog
+            if (errorDialog != null) {
+                // Create a new DialogFragment for the error dialog
+                ErrorDialogFragment errorFragment = new ErrorDialogFragment();
+                errorFragment.setDialog(errorDialog);
+                errorFragment.show(getChildFragmentManager(), "Location Updates");
+            }
+
+            return false;
+        }
+    }*/
 
     private void showEarthquake(Earthquake eq, boolean doZoom) {
         try {
             float lat = eq.getLatitude();
             float lon = eq.getLongitude();
             float rad = computeEarthquakeRadius(eq.getMagnitude());
-            dropMarker(lat, lon, BitmapDescriptorFactory.HUE_RED);
+            dropMarker(lat, lon, BitmapDescriptorFactory.HUE_RED, eq.getId(), eq.getTime().toGMTString() + "\n" + eq.getMagnitude());
             dropCircleEffect(lat, lon, rad * 1000);
             if (doZoom) zoomTo(lat, lon, 7);
         } catch (Exception e) {
@@ -221,7 +248,7 @@ public class MapActivity extends AppCompatActivity {
     }
 
     private void showPerson(Person per) {
-        dropMarker(per.getLatitude(), per.getLongitude(), BitmapDescriptorFactory.HUE_BLUE);
+        dropMarker(per.getLatitude(), per.getLongitude(), BitmapDescriptorFactory.HUE_BLUE, per.getName(), per.getLocation());
     }
 
 
