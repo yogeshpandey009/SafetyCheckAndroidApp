@@ -54,11 +54,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AsyncCollectionConnect.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AsyncCollectionConnect.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/safetycheck/service/AsyncCollectionConnect.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.47085202">
-              <caret line="19" column="50" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="145" column="14" selection-start-line="145" selection-start-column="14" selection-end-line="145" selection-end-column="14" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ObjectMapper.java" pinned="false" current-in-tab="true">
+        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.7.3/42e1a9bae2802bc0b53efa3d96ba7cfaf9dcd9fc/jackson-databind-2.7.3-sources.jar!/com/fasterxml/jackson/databind/ObjectMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3026906">
+              <caret line="39" column="41" selection-start-line="39" selection-start-column="41" selection-end-line="39" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -2104,8 +2116,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/safetycheck/service/AsyncCollectionConnect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47085202">
-          <caret line="19" column="50" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="50" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="145" column="14" selection-start-line="145" selection-start-column="14" selection-end-line="145" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.7.3/42e1a9bae2802bc0b53efa3d96ba7cfaf9dcd9fc/jackson-databind-2.7.3-sources.jar!/com/fasterxml/jackson/databind/ObjectMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3026906">
+          <caret line="39" column="41" selection-start-line="39" selection-start-column="41" selection-end-line="39" selection-end-column="41" />
           <folding />
         </state>
       </provider>
