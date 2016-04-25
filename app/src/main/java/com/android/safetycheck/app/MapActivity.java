@@ -2,6 +2,7 @@ package com.android.safetycheck.app;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -128,6 +129,7 @@ public class MapActivity extends AppCompatActivity {
         String action = i.getStringExtra("action");
         switch (action) {
             case "mapEarthquake":
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 final Earthquake eq = (Earthquake) i.getSerializableExtra("earthquake");
                 showEarthquake(eq, true);
                 showImpactedPersons(this, new HashMap<String, String>() {{
@@ -135,11 +137,13 @@ public class MapActivity extends AppCompatActivity {
                 }});
                 break;
             case "mapEarthquakes":
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                 //final List<Earthquake> earthquakes = (ArrayList<Earthquake>) i.getSerializableExtra("earthquakes");
                 final List<Earthquake> earthquakes = ((SafetyCheckApp) this.getApplicationContext()).getEarthquakesData();
                 showEarthquakes(earthquakes);
                 break;
             case "mapPersons":
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                 final List<Person> persons = (ArrayList<Person>) i.getSerializableExtra("persons");
                 showPersons(persons);
                 break;
