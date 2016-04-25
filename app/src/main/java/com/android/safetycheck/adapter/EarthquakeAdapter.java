@@ -46,7 +46,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> implements View.
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.list_earthquake, parent, false);
-            viewHolder.eqIdTV = (TextView) convertView.findViewById(R.id.earthquakeId);
+            //viewHolder.eqIdTV = (TextView) convertView.findViewById(R.id.earthquakeId);
             viewHolder.magTv = (TextView) convertView.findViewById(R.id.magnitude);
             viewHolder.timeTV = (TextView) convertView.findViewById(R.id.time);
             viewHolder.coTV = (TextView) convertView.findViewById(R.id.coordinates);
@@ -55,7 +55,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> implements View.
             viewHolder = (ViewHolder) convertView.getTag();
         }
         // Populate the data into the template view using the data object
-        viewHolder.eqIdTV.setText(eq.getId());
+        //viewHolder.eqIdTV.setText(eq.getId());
         viewHolder.magTv.setText(eq.getMagnitude() + "");
         viewHolder.timeTV.setText(eq.getTime().toGMTString());
         viewHolder.coTV.setText(eq.getLatitude() + " " + eq.getLongitude());
@@ -97,7 +97,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> implements View.
 
     // View lookup cache
     private static class ViewHolder {
-        TextView eqIdTV;
+        //TextView eqIdTV;
         TextView magTv;
         TextView timeTV;
         TextView coTV;
