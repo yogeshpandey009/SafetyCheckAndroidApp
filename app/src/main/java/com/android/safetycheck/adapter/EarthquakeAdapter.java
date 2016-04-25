@@ -2,7 +2,6 @@ package com.android.safetycheck.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -13,12 +12,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.safetycheck.app.MapActivity;
 import com.android.safetycheck.app.R;
+import com.android.safetycheck.app.MapActivity;
 import com.android.safetycheck.model.Earthquake;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by yogeshpandey on 19/04/16.

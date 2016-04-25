@@ -6,21 +6,26 @@
     <permission android:name="android.permission.ACCESS_COARSE_LOCATION"
                 android:protectionLevel="dangerous"/>
 
+    <uses-permission android:name = "android.permission.VIBRATE"/>
+    <!--Allows the API to check the connection status in order to determine whether data can be downloaded.-->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!--Used by the API to download map tiles from Google Maps servers.-->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!--Allows the API to use WiFi or mobile cell data (or both) to determine the device's location.-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!--Allows the API to use the Global Positioning System (GPS) to determine the device's location to within a very small area.-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <application
-        android:name=".SafetyCheckApp"
+        android:name="SafetyCheckApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.android.safetycheck.app.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -32,6 +37,7 @@
         <activity
             android:name=".MapActivity">
         </activity>
+
         <!--
         android:screenOrientation="landscape"
         android:configChanges="orientation"-->

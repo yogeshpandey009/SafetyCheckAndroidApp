@@ -16,6 +16,8 @@ import android.view.MenuItem;
 import android.view.animation.BounceInterpolator;
 import android.widget.Toast;
 
+import com.android.safetycheck.app.Manifest;
+import com.android.safetycheck.app.R;
 import com.android.safetycheck.model.Earthquake;
 import com.android.safetycheck.model.Person;
 import com.android.safetycheck.service.AsyncCollectionConnect;

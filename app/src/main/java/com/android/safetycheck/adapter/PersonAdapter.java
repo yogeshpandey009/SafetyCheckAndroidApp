@@ -3,7 +3,6 @@ package com.android.safetycheck.adapter;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -11,11 +10,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.safetycheck.app.R;
-import com.android.safetycheck.model.Earthquake;
 import com.android.safetycheck.model.Person;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by yogeshpandey on 19/04/16.
