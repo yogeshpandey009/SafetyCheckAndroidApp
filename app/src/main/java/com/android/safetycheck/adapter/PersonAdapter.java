@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.safetycheck.app.R;
+import com.android.safetycheck.R;
 import com.android.safetycheck.model.Person;
 
 import java.util.ArrayList;

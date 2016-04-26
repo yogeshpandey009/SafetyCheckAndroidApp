@@ -12,7 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.safetycheck.app.R;
+import com.android.safetycheck.R;
 import com.android.safetycheck.app.MapActivity;
 import com.android.safetycheck.model.Earthquake;
 
@@ -47,7 +47,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> implements View.
             //viewHolder.eqIdTV = (TextView) convertView.findViewById(R.id.earthquakeId);
             viewHolder.magTv = (TextView) convertView.findViewById(R.id.magnitude);
             viewHolder.timeTV = (TextView) convertView.findViewById(R.id.time);
-            viewHolder.coTV = (TextView) convertView.findViewById(R.id.coordinates);
+            viewHolder.coTV = (TextView) convertView.findViewById(R.id.lat);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();

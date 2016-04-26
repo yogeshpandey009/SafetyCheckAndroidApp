@@ -1,8 +1,5 @@
 package com.android.safetycheck.service;
 
-import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
-
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;

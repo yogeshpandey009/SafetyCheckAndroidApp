@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.safetycheck.R;
 import com.android.safetycheck.adapter.EarthquakeAdapter;
 import com.android.safetycheck.adapter.PersonAdapter;
 import com.android.safetycheck.model.Earthquake;

@@ -114,6 +114,10 @@ public class AsyncCollectionConnect extends AsyncTask<MethodInformation, Integer
                 List<Person> persons = getPersons(res);
                 MapActivity mapAV = ((MapActivity) res.parent);
                 mapAV.showPersons(persons);
+            } else if(res.method.equals("saveEarthquakes")) {
+                List<Earthquake> earthquakes = getEarthquakes(res);
+                EarthquakeService eqService = (EarthquakeService) res.parentService;
+                eqService.saveEarthquakes(earthquakes);
             }
         }catch (Exception ex){
             Log.e(this.getClass().getSimpleName(), "Exception: " + ex.getMessage());

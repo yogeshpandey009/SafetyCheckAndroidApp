@@ -19,6 +19,16 @@ public class Earthquake implements Serializable {
 		super();
 	}
 
+	public Earthquake(String id, Float magnitude, Date time,
+					  Float latitude, Float longitude) {
+		super();
+		this.setId(id);
+		this.magnitude = magnitude;
+		this.time = time;
+		this.latitude = latitude;
+		this.longitude = longitude;
+	}
+
 	public Earthquake(String id, Float magnitude, String time,
 			Float latitude, Float longitude) {
 		super();

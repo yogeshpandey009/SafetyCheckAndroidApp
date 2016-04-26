@@ -2,5 +2,5 @@
     <string name="app_name">SafetyCheck</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
-    <string name="defaultURL">http://10.0.2.2:8080/SafetyCheckWeb/api/</string>
+    <string name="defaultURL">http://52.32.136.81:8080/SafetyCheckWeb/api/</string>
 </resources>

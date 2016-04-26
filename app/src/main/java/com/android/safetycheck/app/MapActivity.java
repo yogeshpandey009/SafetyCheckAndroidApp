@@ -16,8 +16,8 @@ import android.view.MenuItem;
 import android.view.animation.BounceInterpolator;
 import android.widget.Toast;
 
-import com.android.safetycheck.app.Manifest;
-import com.android.safetycheck.app.R;
+import com.android.safetycheck.Manifest;
+import com.android.safetycheck.R;
 import com.android.safetycheck.model.Earthquake;
 import com.android.safetycheck.model.Person;
 import com.android.safetycheck.service.AsyncCollectionConnect;
@@ -86,6 +86,8 @@ public class MapActivity extends AppCompatActivity {
             mapUiSettings.setZoomGesturesEnabled(true);
             mapUiSettings.setMyLocationButtonEnabled(true);
             mapUiSettings.setScrollGesturesEnabled(true);
+            mapUiSettings.setCompassEnabled(true);
+            mapUiSettings.setMapToolbarEnabled(true);
             Toast.makeText(this, "Map Fragment was loaded properly!", Toast.LENGTH_SHORT).show();
             // Attach marker click listener to the map here
             map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -242,7 +244,7 @@ public class MapActivity extends AppCompatActivity {
             float rad = computeEarthquakeRadius(eq.getMagnitude());
             dropMarker(lat, lon, BitmapDescriptorFactory.HUE_RED, eq.getId(), eq.getTime().toGMTString() + "\n" + eq.getMagnitude());
             dropCircleEffect(lat, lon, rad * 1000);
-            if (doZoom) zoomTo(lat, lon, 7);
+            if (doZoom) zoomTo(lat, lon, 6);
         } catch (Exception e) {
             Log.e(this.getLocalClassName(), "unable to put marker for earthquake: " + eq, e);
         }

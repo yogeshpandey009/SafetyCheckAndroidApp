@@ -23,6 +23,7 @@ package com.android.safetycheck.service;
  */
 
 import android.app.Activity;
+import android.app.IntentService;
 import android.view.View;
 
 import java.util.Map;
@@ -32,22 +33,29 @@ public class MethodInformation {
     public Map<String, String> params;
     public View parentView;
     public Activity parent;
+    public IntentService parentService;
     public String urlString;
     public String resultAsJson;
 
-    public MethodInformation(View parentView, String urlString, String method, Map<String, String> params){
+    public MethodInformation(String urlString, String method, Map<String, String> params) {
         this.method = method;
-        this.parentView = parentView;
         this.urlString = urlString;
         this.params = params;
         this.resultAsJson = "{}";
     }
 
+    public MethodInformation(IntentService parentService, String urlString, String method, Map<String, String> params){
+        this(urlString, method, params);
+        this.parentService = parentService;
+    }
+
+    public MethodInformation(View parentView, String urlString, String method, Map<String, String> params){
+        this(urlString, method, params);
+        this.parentView = parentView;
+    }
+
     public MethodInformation(Activity parent, String urlString, String method, Map<String, String> params){
-        this.method = method;
+        this(urlString, method, params);
         this.parent = parent;
-        this.urlString = urlString;
-        this.params = params;
-        this.resultAsJson = "{}";
     }
 }
