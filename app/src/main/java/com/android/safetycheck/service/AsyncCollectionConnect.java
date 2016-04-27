@@ -6,7 +6,6 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.ListView;
 
-import com.android.safetycheck.adapter.EarthquakeAdapter;
 import com.android.safetycheck.adapter.PersonAdapter;
 import com.android.safetycheck.app.MapActivity;
 import com.android.safetycheck.model.Earthquake;
@@ -94,15 +93,7 @@ public class AsyncCollectionConnect extends AsyncTask<MethodInformation, Integer
                 (Looper.myLooper() == Looper.getMainLooper() ? "Main thread" : "Async Thread"));
         //Log.d(this.getClass().getSimpleName(), " resulting is: " + res.resultAsJson);
         try {
-            if(res.method.equals("listEarthquakes")) {
-                List<Earthquake> earthquakes = getEarthquakes(res);
-                ListView listView = ((ListView) res.parentView);
-                EarthquakeAdapter adapter = ((EarthquakeAdapter) listView.getAdapter());
-                adapter.addAll(earthquakes);
-                adapter.notifyDataSetChanged();
-                //mainActivity.myListAdapter.moviesInGenre = moviesInGenre;
-                //mainActivity.myListAdapter.notifyDataSetChanged();
-            } else if(res.method.equals("listPersons")) {
+            if(res.method.equals("listPersons")) {
                 List<Person> persons = getPersons(res);
                 ListView listView = ((ListView) res.parentView);
                 PersonAdapter adapter = ((PersonAdapter) listView.getAdapter());

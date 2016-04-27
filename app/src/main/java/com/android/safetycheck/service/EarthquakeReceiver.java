@@ -15,7 +15,6 @@ public class EarthquakeReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Intent i = new Intent(context, EarthquakeService.class);
-        i.putExtra("foo", "bar");
         context.startService(i);
     }
 }

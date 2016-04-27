@@ -16,7 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.safetycheck.R;
-import com.android.safetycheck.adapter.EarthquakeAdapter;
+import com.android.safetycheck.adapter.EarthquakeCursorAdapter;
 import com.android.safetycheck.adapter.PersonAdapter;
 import com.android.safetycheck.model.Earthquake;
 import com.android.safetycheck.model.Person;
@@ -25,6 +25,7 @@ import com.android.safetycheck.service.MethodInformation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -36,6 +37,7 @@ public class PlaceholderFragment extends Fragment {
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
     public ArrayAdapter adapter = null;
+    public EarthquakeCursorAdapter eqAdapter = null;
     private int mPage;
 
     public PlaceholderFragment() {
@@ -78,9 +80,12 @@ public class PlaceholderFragment extends Fragment {
         textView.setText("Earthquakes");
         //textView.setText(getString(R.string.section_format, 1));
         ListView listview = (ListView) rootView.findViewById(R.id.list);
-        adapter = new EarthquakeAdapter(this.getContext(), listview, new ArrayList<Earthquake>());
-        listview.setAdapter(adapter);
-        loadEarthquakes(listview);
+        //adapter = new EarthquakeAdapter(this.getContext(), listview, new ArrayList<Earthquake>());
+        //int EQ_LOADER_ID = 99; // From docs: A unique identifier for this loader. Can be whatever you want.
+        eqAdapter = new EarthquakeCursorAdapter(this.getContext(), listview, getLoaderManager());
+        listview.setAdapter(eqAdapter);
+        //getLoaderManager().initLoader(EQ_LOADER_ID, null, eqAdapter);
+        //loadEarthquakes(listview);
         Button btn = (Button) rootView.findViewById(R.id.eqBtn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,10 +139,10 @@ public class PlaceholderFragment extends Fragment {
     public void showEarthquakesOnMap(View view) {
         Intent i = new Intent(this.getContext(), MapActivity.class);
         i.putExtra("action", "mapEarthquakes");
-        ArrayList<Earthquake> earthquakeList = ((EarthquakeAdapter)adapter).getValues();
+        List<Earthquake> earthquakeList = eqAdapter.getAllEarthquakes();
         SafetyCheckApp app = (SafetyCheckApp) this.getContext().getApplicationContext();
         app.setEarthquakesData(earthquakeList);
-        //serializing huge list of data crashes the application
+        //serializing huge list of data may crashe the application
         //i.putExtra("earthquakes", earthquakeList);
         startActivity(i);
 
@@ -150,5 +155,11 @@ public class PlaceholderFragment extends Fragment {
         i.putExtra("persons", personList);
         startActivity(i);
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(eqAdapter != null) eqAdapter.notifyDataSetChanged();
     }
 }

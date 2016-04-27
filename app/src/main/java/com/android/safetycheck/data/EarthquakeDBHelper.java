@@ -46,6 +46,7 @@ public class EarthquakeDBHelper extends SQLiteOpenHelper {
                 "CREATE TABLE " + EarthquakeContract.EarthquakeEntry.TABLE_NAME + " (" +
                         EarthquakeContract.EarthquakeEntry._ID + " INTEGER PRIMARY KEY, " +
                         EarthquakeContract.EarthquakeEntry.EQ_ID + " TEXT NOT NULL, " +
+                        EarthquakeContract.EarthquakeEntry.EQ_DESC + " TEXT NOT NULL, " +
                         EarthquakeContract.EarthquakeEntry.EQ_LATITUDE + " REAL NOT NULL, " +
                         EarthquakeContract.EarthquakeEntry.EQ_LONGITUDE + " REAL NOT NULL, " +
                         EarthquakeContract.EarthquakeEntry.EQ_MAGNITUDE + " REAL NOT NULL, " +

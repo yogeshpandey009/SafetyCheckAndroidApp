@@ -14,29 +14,32 @@ public class Earthquake implements Serializable {
 	private Float latitude;
 	private Float longitude;
 	private String timeAsFormat = "";
+	private String desc = "";
 	
 	public Earthquake() {
 		super();
 	}
 
 	public Earthquake(String id, Float magnitude, Date time,
-					  Float latitude, Float longitude) {
+					  Float latitude, Float longitude, String desc) {
 		super();
 		this.setId(id);
 		this.magnitude = magnitude;
 		this.time = time;
 		this.latitude = latitude;
 		this.longitude = longitude;
+        this.desc = desc;
 	}
 
 	public Earthquake(String id, Float magnitude, String time,
-			Float latitude, Float longitude) {
+			Float latitude, Float longitude, String desc) {
 		super();
 		this.setId(id);
 		this.magnitude = magnitude;
 		this.time = parseTime(time);
 		this.latitude = latitude;
 		this.longitude = longitude;
+		this.desc = desc;
 	}
 	
 	public Earthquake(Float magnitude, String time,
@@ -99,6 +102,12 @@ public class Earthquake implements Serializable {
 	public void setLongitude(Float longitude) {
 		this.longitude = longitude;
 	}
+	public String getDesc() {
+		return desc;
+	}
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
 
 	@Override
 	public String toString() {
@@ -108,7 +117,8 @@ public class Earthquake implements Serializable {
 				", latitude=" + latitude +
 				", longitude=" + longitude +
 				", time=" + time +
-				'}';
+                ", desc=" + desc +
+                '}';
 	}
 
 	public static void main(String[] args) {

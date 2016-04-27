@@ -1,14 +1,14 @@
 package com.android.safetycheck.adapter;
 
-import android.app.LoaderManager;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
-import android.content.CursorLoader;
 import android.content.Intent;
-import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -19,7 +19,9 @@ import com.android.safetycheck.app.MapActivity;
 import com.android.safetycheck.data.EarthquakeContract.EarthquakeEntry;
 import com.android.safetycheck.model.Earthquake;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by yogeshpandey on 19/04/16.
@@ -31,8 +33,8 @@ public class EarthquakeCursorAdapter extends SimpleCursorAdapter implements List
 
 
     private static String[] from = {EarthquakeEntry.EQ_MAGNITUDE, EarthquakeEntry.EQ_LATITUDE, EarthquakeEntry.EQ_LONGITUDE,
-            EarthquakeEntry.EQ_TIME};
-    private static int[] to = {R.id.magnitude, R.id.lat, R.id.lon, R.id.time};
+            EarthquakeEntry.EQ_DESC};
+    private static int[] to = {R.id.magnitude, R.id.lat, R.id.lon, R.id.desc};
 
     public EarthquakeCursorAdapter(Context context, ListView listView, LoaderManager loaderManager) {
 
@@ -71,15 +73,33 @@ public class EarthquakeCursorAdapter extends SimpleCursorAdapter implements List
         Cursor result = cr.query(ContentUris.withAppendedId(EarthquakeEntry.CONTENT_URI, id), null, null, null, null);
 
         if (result.moveToFirst()) {
-            String eqId = result.getString(result.getColumnIndex(EarthquakeEntry.EQ_ID));
-            float mag = result.getFloat(result.getColumnIndex(EarthquakeEntry.EQ_MAGNITUDE));
-            float lat = result.getFloat(result.getColumnIndex(EarthquakeEntry.EQ_LATITUDE));
-            float lon = result.getFloat(result.getColumnIndex(EarthquakeEntry.EQ_LONGITUDE));
-            Date time = new Date(result.getInt(result.getColumnIndex(EarthquakeEntry.EQ_TIME)));
-            Earthquake selEarthquake = new Earthquake(eqId, mag, time, lat, lon);
+            Earthquake selEarthquake = cursorToEarthquake(result);
             showEarthquakeOnMap(selEarthquake);
         }
 
+    }
+
+    public List<Earthquake> getAllEarthquakes() {
+        List<Earthquake> earthquakes = new ArrayList<>();
+        ContentResolver cr = context.getContentResolver();
+        Cursor result = cr.query(EarthquakeEntry.CONTENT_URI, null, null, null, null);
+        if (result != null && result.getCount() > 0) {
+            while (result.moveToNext()) {
+                earthquakes.add(cursorToEarthquake(result));
+            }
+        }
+        return earthquakes;
+    }
+
+    public Earthquake cursorToEarthquake(Cursor cur) {
+        String eqId = cur.getString(cur.getColumnIndex(EarthquakeEntry.EQ_ID));
+        float mag = cur.getFloat(cur.getColumnIndex(EarthquakeEntry.EQ_MAGNITUDE));
+        float lat = cur.getFloat(cur.getColumnIndex(EarthquakeEntry.EQ_LATITUDE));
+        float lon = cur.getFloat(cur.getColumnIndex(EarthquakeEntry.EQ_LONGITUDE));
+        Date time = new Date(cur.getInt(cur.getColumnIndex(EarthquakeEntry.EQ_TIME)));
+        String desc = cur.getString(cur.getColumnIndex(EarthquakeEntry.EQ_DESC));
+        Earthquake eq = new Earthquake(eqId, mag, time, lat, lon, desc);
+        return eq;
     }
 
     private void showEarthquakeOnMap(Earthquake selEarthquake) {

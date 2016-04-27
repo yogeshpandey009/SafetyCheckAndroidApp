@@ -11,7 +11,7 @@ import android.net.Uri;
 /**
  * Created by yogeshpandey on 25/04/16.
  */
-public class EarthquakeProvider extends ContentProvider {
+public class EarthquakeContentProvider extends ContentProvider {
     // Use an int for each URI we will run, this represents the different queries
     private static final int EARTHQUAKE = 100; //All Rows
     private static final int EARTHQUAKE_ID = 101; //Single Row

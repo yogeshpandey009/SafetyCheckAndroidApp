@@ -13,7 +13,7 @@ import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 
 import com.android.safetycheck.R;
-import com.android.safetycheck.app.MainActivity;
+import com.android.safetycheck.app.MapActivity;
 import com.android.safetycheck.data.EarthquakeContract.EarthquakeEntry;
 import com.android.safetycheck.model.Earthquake;
 
@@ -26,7 +26,7 @@ import java.util.List;
 public class EarthquakeService extends IntentService {
 
     private long[] mVibrationPattern = { 0, 200, 200, 300 };
-    private Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+    private Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
 
     // Must create a default constructor
@@ -64,7 +64,7 @@ public class EarthquakeService extends IntentService {
             Cursor query = cr.query(EarthquakeEntry.CONTENT_URI, null, where, new String[] { eq.getId() }, null);
             if (query.getCount() == 0) {
                 long id = insertEarthquake(eq);
-                createNotification((int)id, R.drawable.ic_eq, eq.getMagnitude() + "", eq.getLatitude() + " , " + eq.getLongitude());
+                createNotification((int)id, R.drawable.ic_eq, eq);
             }
         }
     }
@@ -76,6 +76,7 @@ public class EarthquakeService extends IntentService {
         newValues.put(EarthquakeEntry.EQ_MAGNITUDE, earthquake.getMagnitude());
         newValues.put(EarthquakeEntry.EQ_LATITUDE, earthquake.getLatitude());
         newValues.put(EarthquakeEntry.EQ_LONGITUDE, earthquake.getLongitude());
+        newValues.put(EarthquakeEntry.EQ_DESC, earthquake.getDesc());
 
         ContentResolver cr = getContentResolver();
         Uri createdRow = cr.insert(EarthquakeEntry.CONTENT_URI, newValues);
@@ -85,10 +86,15 @@ public class EarthquakeService extends IntentService {
 
     //  createNotification(56, R.drawable.ic_launcher, "New Message",
     //      "There is a new message from Bob!");
-    private void createNotification(int nId, int iconRes, String title, String body) {
+    private void createNotification(int nId, int iconRes, Earthquake eq) {
+        String title = "New Earthquake detected!";
+        String txt = eq.getDesc();
+        //String body = eq.getLatitude() + " , " + eq.getLongitude();
         // First let's define the intent to trigger when notification is selected
         // Start out by creating a normal intent (in this case to open an activity)
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.putExtra("action", "mapEarthquake");
+        intent.putExtra("earthquake", eq);
         // Next, let's turn this into a PendingIntent using
         int requestID = (int) System.currentTimeMillis();
         //unique requestID to differentiate between various notification with same NotifId
@@ -101,10 +107,10 @@ public class EarthquakeService extends IntentService {
                 .setContentIntent(pIntent)
                 .setVibrate(mVibrationPattern)
                         .setSound(soundUri)
-                //.setStyle(new NotificationCompat.BigTextStyle().bigText(longText))
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(txt))
                 //.setLargeIcon(largeIcon)
-                .setAutoCancel(true)
-                .setContentText(body);
+                .setAutoCancel(true);
+                //.setContentText(body);
 
         NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

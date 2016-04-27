@@ -51,8 +51,9 @@ public class EarthquakeContract {
         public static final String EQ_LATITUDE = "latitude";
         public static final String EQ_LONGITUDE = "longitude";
         public static final String EQ_TIME = "time";
+        public static final String EQ_DESC = "desc";
         public static final String[] projection = {
-                _ID, EQ_ID, EQ_MAGNITUDE, EQ_LATITUDE, EQ_LONGITUDE, EQ_TIME
+                _ID, EQ_ID, EQ_MAGNITUDE, EQ_LATITUDE, EQ_LONGITUDE, EQ_TIME, EQ_DESC
         };
 
         // Define a function to build a URI to find a specific earthquake by it's identifier

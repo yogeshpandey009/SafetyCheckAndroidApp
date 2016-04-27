@@ -80,15 +80,13 @@ public class MapActivity extends AppCompatActivity {
             // Supported types include: MAP_TYPE_NORMAL, MAP_TYPE_SATELLITE
             // MAP_TYPE_TERRAIN, MAP_TYPE_HYBRID
             map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-            //map.setMyLocationEnabled(true);
             UiSettings mapUiSettings = map.getUiSettings();
+            mapUiSettings.setAllGesturesEnabled(true);
             mapUiSettings.setZoomControlsEnabled(true);
             mapUiSettings.setZoomGesturesEnabled(true);
             mapUiSettings.setMyLocationButtonEnabled(true);
             mapUiSettings.setScrollGesturesEnabled(true);
-            mapUiSettings.setCompassEnabled(true);
             mapUiSettings.setMapToolbarEnabled(true);
-            Toast.makeText(this, "Map Fragment was loaded properly!", Toast.LENGTH_SHORT).show();
             // Attach marker click listener to the map here
             map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                 public boolean onMarkerClick(Marker marker) {
@@ -283,7 +281,9 @@ public class MapActivity extends AppCompatActivity {
             case R.id.action_back:
                 // User chose the "Back Button" item. Log it
                 android.util.Log.d(this.getClass().getSimpleName(), "back button selected");
-                finish();
+                Intent i = new Intent(this, MainActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i);
                 return true;
 
             default:
