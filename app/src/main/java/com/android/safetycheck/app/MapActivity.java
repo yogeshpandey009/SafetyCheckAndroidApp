@@ -242,7 +242,7 @@ public class MapActivity extends AppCompatActivity {
             float rad = computeEarthquakeRadius(eq.getMagnitude());
             dropMarker(lat, lon, BitmapDescriptorFactory.HUE_RED, eq.getId(), eq.getTime().toGMTString() + "\n" + eq.getMagnitude());
             dropCircleEffect(lat, lon, rad * 1000);
-            if (doZoom) zoomTo(lat, lon, 6);
+            if (doZoom) zoomTo(lat, lon, 7);
         } catch (Exception e) {
             Log.e(this.getLocalClassName(), "unable to put marker for earthquake: " + eq, e);
         }

@@ -16,6 +16,29 @@ import com.android.safetycheck.R;
 import com.android.safetycheck.service.EarthquakeReceiver;
 import com.astuetz.PagerSlidingTabStrip;
 
+
+/**
+ * Copyright (c) 2016 Yogesh Pandey,
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Purspose: This is Mobile Systems Masters Student Project:
+ * This application fetches earthquake alerts and friends details from server and notify user
+ * if whenever new earthquake alert is generated.
+ *
+ * Created by yogeshpandey on 19/04/16.
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     /**
@@ -92,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         // First parameter is the type: ELAPSED_REALTIME, ELAPSED_REALTIME_WAKEUP, RTC_WAKEUP
         // Interval can be INTERVAL_FIFTEEN_MINUTES, INTERVAL_HALF_HOUR, INTERVAL_HOUR, INTERVAL_DAY
         alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, firstMillis,
-                300000, pIntent);
+                180000, pIntent);
     }
 
     public void cancelAlarm() {
